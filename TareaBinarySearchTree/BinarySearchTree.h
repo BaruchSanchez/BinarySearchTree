@@ -371,119 +371,8 @@ public:
 		// y borramos el nodo.
 		delete nodeToDelete;
 	}
-
-private:
-	TreeNode<T>* TreeMaximum()
-	{
-		// empezamos en la ra�z y le pedimos el m�ximo desde ah�.
-		return Maximum(root);
-	}
-
-	// Nos da el m�ximo a partir de node como ra�z.
-	TreeNode<T>* Maximum(TreeNode<T>* node)
-	{
-		// empezamos en node y 
-		TreeNode<T>* maximum = node;
-		// nos vamos todo a la derecha hasta que el hijo derecha sea nullptr.
-		while (maximum->rightChild != nullptr)
-			maximum = maximum->rightChild;
-
-		return maximum;
-	}
-
-
-	// el m�nimo valor T en todo el �rbol.
-	TreeNode<T>* TreeMinimum()
-	{
-		// empezamos en la ra�z y le pedimos el m�nimo desde ah�
-		return Minimum(root);
-	}
-
-	// Nos da el m�nimo a partir de node como ra�z.
-	TreeNode<T>* Minimum(TreeNode<T>* node)
-	{
-		// empezamos en node y 
-		TreeNode<T>* minimum = node;
-		// nos vamos todo a la izquierda hasta que el hijo izquierdo sea nullptr.
-		while (minimum->leftChild != nullptr)
-			minimum = minimum->leftChild;
-
-		return minimum;
-	}
-
-	TreeNode<T>* MinimumWithRecursive()
-	{
-		// empezamos en la ra�z y hacemos recursi�n.
-		return MinimumRecursive(root);
-	}
-
-	TreeNode<T>* MinimumRecursive(TreeNode<T>* currentNode)
-	{
-		if (currentNode->leftChild == nullptr)
-			return currentNode;
-		// else
-		return MinimumRecursive(currentNode->leftChild);
-	}
-
-	TreeNode<T>* Successor(TreeNode<T>* node)
-	{
-		if (node->rightChild != nullptr)
-			return Minimum(node->rightChild); // Minimum se debe mandar a llamar desde la derecha del node que se recibi� como par�metro.
-
-		// si no, entonces 
-		// tomamos el padre de node, y lo guardamos en una variable
-		TreeNode<T>* ancestor = node->parent;
-		// Mientras que no llegue a null y siga siendo hijo derecho de alguien, entonces se seguir�
-		// subiendo en los parents.
-		while (ancestor != nullptr && node == ancestor->rightChild)
-		{
-			// node se vuelve su pap�
-			node = ancestor;
-			// y el pap� se vuelve su pap�
-			ancestor = node->parent;
-		}
-		return ancestor;
-	}
-
-	// lo mismo que Successor, pero invertimos Right por Left, y Minimum por maximum.
-	TreeNode<T>* Predecessor(TreeNode<T>* node)
-	{
-		if (node->leftChild != nullptr)
-			return Maximum(node->leftChild); // Maximum se debe mandar a llamar desde la izquierda del node que se recibi� como par�metro.
-
-		// si no, entonces 
-		// tomamos el padre de node, y lo guardamos en una variable
-		TreeNode<T>* ancestor = node->parent;
-		// Mientras que no llegue a null y siga siendo hijo izquierdo de alguien, entonces se seguir�
-		// subiendo en los parents.
-		while (ancestor != nullptr && node == ancestor->leftChild)
-		{
-			// node se vuelve su pap�
-			node = ancestor;
-			// y el pap� se vuelve su pap�
-			ancestor = node->parent;
-		}
-		return ancestor;
-	}
-
-
-	TreeNode<T>* SearchRecursive(TreeNode<T>* currentNode, T value)
-	{
-		if (currentNode == nullptr)
-			return nullptr;
-		if (currentNode->data == value)
-			return currentNode;
-		// si el valor que est�s buscando (value) es menor que el de este nodo, vete al hijo izquierdo
-		if (value < currentNode->data)
-		{
-			return SearchRecursive(currentNode->leftChild, value);
-		}
-
-		// else
-		return SearchRecursive(currentNode->rightChild, value);
-	}
-
-	void InOrderRecursive(TreeNode<T>* node)
+Public:
+void InOrderRecursive(TreeNode<T>* node)
 	{
 		if (node != nullptr)
 		{
@@ -595,7 +484,116 @@ private:
 	}
 	// -------- FIN PUNTO 4 --------
 
+private:
+	TreeNode<T>* TreeMaximum()
+	{
+		// empezamos en la ra�z y le pedimos el m�ximo desde ah�.
+		return Maximum(root);
+	}
 
+	// Nos da el m�ximo a partir de node como ra�z.
+	TreeNode<T>* Maximum(TreeNode<T>* node)
+	{
+		// empezamos en node y 
+		TreeNode<T>* maximum = node;
+		// nos vamos todo a la derecha hasta que el hijo derecha sea nullptr.
+		while (maximum->rightChild != nullptr)
+			maximum = maximum->rightChild;
+
+		return maximum;
+	}
+
+
+	// el m�nimo valor T en todo el �rbol.
+	TreeNode<T>* TreeMinimum()
+	{
+		// empezamos en la ra�z y le pedimos el m�nimo desde ah�
+		return Minimum(root);
+	}
+
+	// Nos da el m�nimo a partir de node como ra�z.
+	TreeNode<T>* Minimum(TreeNode<T>* node)
+	{
+		// empezamos en node y 
+		TreeNode<T>* minimum = node;
+		// nos vamos todo a la izquierda hasta que el hijo izquierdo sea nullptr.
+		while (minimum->leftChild != nullptr)
+			minimum = minimum->leftChild;
+
+		return minimum;
+	}
+
+	TreeNode<T>* MinimumWithRecursive()
+	{
+		// empezamos en la ra�z y hacemos recursi�n.
+		return MinimumRecursive(root);
+	}
+
+	TreeNode<T>* MinimumRecursive(TreeNode<T>* currentNode)
+	{
+		if (currentNode->leftChild == nullptr)
+			return currentNode;
+		// else
+		return MinimumRecursive(currentNode->leftChild);
+	}
+
+	TreeNode<T>* Successor(TreeNode<T>* node)
+	{
+		if (node->rightChild != nullptr)
+			return Minimum(node->rightChild); // Minimum se debe mandar a llamar desde la derecha del node que se recibi� como par�metro.
+
+		// si no, entonces 
+		// tomamos el padre de node, y lo guardamos en una variable
+		TreeNode<T>* ancestor = node->parent;
+		// Mientras que no llegue a null y siga siendo hijo derecho de alguien, entonces se seguir�
+		// subiendo en los parents.
+		while (ancestor != nullptr && node == ancestor->rightChild)
+		{
+			// node se vuelve su pap�
+			node = ancestor;
+			// y el pap� se vuelve su pap�
+			ancestor = node->parent;
+		}
+		return ancestor;
+	}
+
+	// lo mismo que Successor, pero invertimos Right por Left, y Minimum por maximum.
+	TreeNode<T>* Predecessor(TreeNode<T>* node)
+	{
+		if (node->leftChild != nullptr)
+			return Maximum(node->leftChild); // Maximum se debe mandar a llamar desde la izquierda del node que se recibi� como par�metro.
+
+		// si no, entonces 
+		// tomamos el padre de node, y lo guardamos en una variable
+		TreeNode<T>* ancestor = node->parent;
+		// Mientras que no llegue a null y siga siendo hijo izquierdo de alguien, entonces se seguir�
+		// subiendo en los parents.
+		while (ancestor != nullptr && node == ancestor->leftChild)
+		{
+			// node se vuelve su pap�
+			node = ancestor;
+			// y el pap� se vuelve su pap�
+			ancestor = node->parent;
+		}
+		return ancestor;
+	}
+
+
+	TreeNode<T>* SearchRecursive(TreeNode<T>* currentNode, T value)
+	{
+		if (currentNode == nullptr)
+			return nullptr;
+		if (currentNode->data == value)
+			return currentNode;
+		// si el valor que est�s buscando (value) es menor que el de este nodo, vete al hijo izquierdo
+		if (value < currentNode->data)
+		{
+			return SearchRecursive(currentNode->leftChild, value);
+		}
+
+		// else
+		return SearchRecursive(currentNode->rightChild, value);
+	}
 };
 
 /*
@@ -619,5 +617,6 @@ private:
 		}
 		return result->data;
 	}
+
 
 */
