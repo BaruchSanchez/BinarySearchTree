@@ -1,0 +1,6 @@
+﻿  BinarySearchTree.cpp
+C:\Users\sanch\OneDrive\Escritorio\BinarySearchTree-main (1)\BinarySearchTree-main\TareaBinarySearchTree\BinarySearchTree.h(251,12): warning C4566: el carácter representado por el nombre de carácter universal '\uFFFD' no se puede representar en la página de códigos actual (1252)
+  (compilando archivo de origen "BinarySearchTree.cpp")
+  
+C:\Users\sanch\OneDrive\Escritorio\BinarySearchTree-main (1)\BinarySearchTree-main\TareaBinarySearchTree\BinarySearchTree.cpp(11,13): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+  TareaBinarySearchTree.vcxproj -> C:\Users\sanch\OneDrive\Escritorio\BinarySearchTree-main (1)\BinarySearchTree-main\x64\Debug\TareaBinarySearchTree.exe
